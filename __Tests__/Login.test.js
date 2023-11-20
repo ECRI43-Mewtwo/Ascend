@@ -6,8 +6,8 @@ import { render, screen } from '@testing-library/react';
 // import store from '../src/store';
 
 describe('Login Page Tests', () => {
-  test('renders the sign-in button', () => {
-    const loginButton = screen.getByRole('button', { name: 'SIGN IN' });
+  test('renders the sign-in button', async () => {
+    const loginButton = await screen.getByRole('button', { name: 'SIGN IN' });
     expect(loginButton).toBeInTheDocument();
   });
   test('renders the username input', async () => {

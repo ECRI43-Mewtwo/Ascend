@@ -46,8 +46,8 @@ describe('Offers Tab Tests', () => {
     // expect(totalComp).toBeInTheDocument();
     expect(offers).toBeInTheDocument();
   });
-  test('renders the edit button for each offer', () => {
-    const editButton = screen.getByRole('button', { name: 'EDIT' });
+  test('renders the edit button for each offer', async () => {
+    const editButton = await screen.getByRole('button', { name: 'EDIT' });
     expect(editButton).toBeInTheDocument();
   });
   // test('renders offers from each company', async () => {

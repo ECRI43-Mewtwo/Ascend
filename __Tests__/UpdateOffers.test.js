@@ -10,8 +10,8 @@ describe('Update Offers Tab Tests', () => {
     const navbar = await document.querySelector('#navbar');
     expect(navbar).toBeInTheDocument();
   });
-  test('renders the update button', () => {
-    const updateButton = screen.getByRole('button', { name: 'UPDATE' });
+  test('renders the update button', async () => {
+    const updateButton = await screen.getByRole('button', { name: 'UPDATE' });
     expect(updateButton).toBeInTheDocument();
   });
   test('renders the update form', async () => {
