@@ -5,12 +5,12 @@ import { render, screen } from '@testing-library/react';
 // import singleOffer from '../src/components/singleOffers';
 // import store from '../src/store';
 
-describe('Offers Tab Tests', () => {
+describe('Update Offers Tab Tests', () => {
   test('renders the navbar', async () => {
     const navbar = await document.querySelector('#navbar');
     expect(navbar).toBeInTheDocument();
   });
-  test('renders the edit button for each offer', () => {
+  test('renders the update button', () => {
     const updateButton = screen.getByRole('button', { name: 'UPDATE' });
     expect(updateButton).toBeInTheDocument();
   });
