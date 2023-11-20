@@ -1,11 +1,10 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const htmlPlugin = new HtmlWebPackPlugin({
-  template: './src/index.html',
-  filename: './index.html',
+  template: path.resolve(__dirname + '/src/public/index.html')
 });
 module.exports = {
-  entry: './src/index.js',
+  entry: path.resolve(__dirname + '/src/index.js'),
   devServer: {
     host: 'localhost',
     port: 8080,
