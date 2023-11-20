@@ -1,20 +1,17 @@
 describe('Ascend Reducers', () => {
   let state;
 
+  beforeEach(() => {
+    state = {
+      status: 'Open',
+    };
+  });
+
   test('Update HomePage State', () => {
     const action = {
-      date: 'Tuesday',
-      company_name: 'Meta',
-      job_title: 'SWE',
-      location: 'New York',
-      type_of_app: 'Forgot',
+      status: 'Rejected',
     };
-    expect(reducer(state, action)).toEqual({
-      date: 'Tuesday',
-      company_name: 'Meta',
-      job_title: 'SWE',
-      location: 'New York',
-      type_of_app: 'Forgot',
-    });
+    const newState = reducer(state, action);
+    expect(newState.status).toEqual('Rejected');
   });
 });
