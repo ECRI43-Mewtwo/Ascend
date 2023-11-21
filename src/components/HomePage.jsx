@@ -64,9 +64,19 @@ const HomePage = () => {
     ));
   };
 
+  const filterApps = () => {
+    const newStatus = document.querySelector('#status').value;
+    updateDropDown(newStatus);
+    const filteredData = testData.filter((app) => {
+      return app.status === newStatus;
+    });
+    console.log('this should be interviewed data only', filteredData);
+    updateData(filteredData);
+  };
+
   useEffect(() => {
     updateData(testData);
-  }, [data]);
+  }, []);
 
   // GET request
   // cache the GET request
@@ -76,7 +86,7 @@ const HomePage = () => {
     <div>
       <NavBar />
       <label for='Status'>Choose a status:</label>
-      <select name='status' id='status'>
+      <select name='status' id='status' onChange={filterApps}>
         <option value='Open'>Open</option>
         <option value='Interviewed'>Interviewed</option>
         <option value='Waiting to Hear Back'>Waiting to Hear Back</option>
