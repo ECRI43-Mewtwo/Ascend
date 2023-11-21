@@ -7,49 +7,12 @@ const HomePage = () => {
   const [dropdown, updateDropDown] = useState('');
   const [data, updateData] = useState([]);
 
-  // const testData = [
-  //   {
-  //     date: '11/19/23',
-  //     company_name: 'company1',
-  //     job_title: 'front-end engineer',
-  //     location: 'remote',
-  //     type_of_app: 'linkedin',
-  //     status: 'Open',
-  //     contact: '',
-  //     notes: '',
-  //     referral: '',
-  //     link: '',
-  //   },
-  //   {
-  //     date: '11/21/23',
-  //     company_name: 'company2',
-  //     job_title: 'software engineer',
-  //     location: 'remote',
-  //     type_of_app: 'linkedin',
-  //     status: 'Open',
-  //     contact: '',
-  //     notes: '',
-  //     referral: '',
-  //     link: '',
-  //   },
-  //   {
-  //     date: '11/21/23',
-  //     company_name: 'company3',
-  //     job_title: 'software engineer',
-  //     location: 'remote',
-  //     type_of_app: 'linkedin',
-  //     status: 'Interviewed',
-  //     contact: '',
-  //     notes: '',
-  //     referral: '',
-  //     link: '',
-  //   },
-  // ];
-
   const getAppData = async () => {
-    const allData = await fetch('/api/app');
-    console.log('from back end', allData.json());
-    return allData;
+    const res = await fetch('/api/getApps');
+    const result = await res.json();
+    console.log(result);
+    updateData(result);
+    // return result;
   };
 
   const makeArray = (data) => {
@@ -57,10 +20,10 @@ const HomePage = () => {
       <DataRow
         key={index}
         date={item.date}
-        company_name={item.company_name}
-        job_title={item.job_title}
+        company={item.company}
+        title={item.title}
         location={item.location}
-        type_of_app={item.type_of_app}
+        app_type={item.app_type}
         status={item.status}
         contact={item.contact}
         notes={item.notes}
@@ -72,32 +35,37 @@ const HomePage = () => {
 
   const filterApps = () => {
     const newStatus = document.querySelector('#status').value;
+    console.log('this is the value of dropdown', newStatus);
     updateDropDown(newStatus);
-    const filteredData = testData.filter((app) => {
+    const filteredData = data.filter((app) => {
+      console.log(app.status, newStatus);
       return app.status === newStatus;
     });
-    console.log('this should be interviewed data only', filteredData);
+    // console.log('this should be interviewed data only', filteredData);
     updateData(filteredData);
   };
 
   useEffect(() => {
-    const newData = getAppData();
-    updateData(newData);
+    const fetchData = async () => {
+      const newData = await getAppData();
+    };
+
+    fetchData();
   }, []);
 
-  // GET request
-  // cache the GET request
-  // useEffect where the page re-renders with applications
+  // if (data.length === 0) {
+  //   return <>No data...</>;
+  // }
 
   return (
     <div>
       <NavBar />
-      <label for='Status'>Choose a status:</label>
+      <label htmlFor='Status'>Choose a status:</label>
       <select name='status' id='status' onChange={filterApps}>
-        <option value='Open'>Open</option>
-        <option value='Interviewed'>Interviewed</option>
-        <option value='Waiting to Hear Back'>Waiting to Hear Back</option>
-        <option value='Rejected'>Rejected</option>
+        <option value='open'>Open</option>
+        <option value='interviewed'>Interviewed</option>
+        <option value='waiting to Hear Back'>Waiting to Hear Back</option>
+        <option value='rejected'>Rejected</option>
       </select>
       {makeArray(data)}
     </div>

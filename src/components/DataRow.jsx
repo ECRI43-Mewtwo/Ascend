@@ -9,10 +9,10 @@ const dataRow = (props) => {
   return (
     <div>
       {props.date}
-      {props.company_name}
-      {props.job_title}
+      {props.company}
+      {props.title}
       {props.location}
-      {props.type_of_app}
+      {props.app_type}
       {props.status}
       {props.contact}
       {props.notes}
