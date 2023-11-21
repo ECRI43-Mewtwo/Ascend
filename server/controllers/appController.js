@@ -26,6 +26,19 @@ appController.updateApp = async (req, res, next) => {
   } catch (error) {
     return next(error);
   }
+}
+
+appController.getApps = async (req, res, next) => {
+  const getAppQuery = 'SELECT * FROM "app_table";'
+  try {
+    db.query(getAppQuery).then ((data) => {
+      console.log("DATA----" , data.rows)
+      res.locals.apps = data.rows;
+      return next();
+    })
+  } catch (error) {
+    return next(error);
+  }
 };
 
 module.exports = appController;
