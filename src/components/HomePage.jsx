@@ -4,47 +4,53 @@ import { useState, useEffect } from 'react';
 import DataRow from './DataRow.jsx';
 
 const HomePage = () => {
-  const [dropdown, updateDropDown] = useState('Open');
+  const [dropdown, updateDropDown] = useState('');
   const [data, updateData] = useState([]);
 
-  const testData = [
-    {
-      date: '11/19/23',
-      company_name: 'company1',
-      job_title: 'front-end engineer',
-      location: 'remote',
-      type_of_app: 'linkedin',
-      status: 'Open',
-      contact: '',
-      notes: '',
-      referral: '',
-      link: '',
-    },
-    {
-      date: '11/21/23',
-      company_name: 'company2',
-      job_title: 'software engineer',
-      location: 'remote',
-      type_of_app: 'linkedin',
-      status: 'Open',
-      contact: '',
-      notes: '',
-      referral: '',
-      link: '',
-    },
-    {
-      date: '11/21/23',
-      company_name: 'company3',
-      job_title: 'software engineer',
-      location: 'remote',
-      type_of_app: 'linkedin',
-      status: 'Interviewed',
-      contact: '',
-      notes: '',
-      referral: '',
-      link: '',
-    },
-  ];
+  // const testData = [
+  //   {
+  //     date: '11/19/23',
+  //     company_name: 'company1',
+  //     job_title: 'front-end engineer',
+  //     location: 'remote',
+  //     type_of_app: 'linkedin',
+  //     status: 'Open',
+  //     contact: '',
+  //     notes: '',
+  //     referral: '',
+  //     link: '',
+  //   },
+  //   {
+  //     date: '11/21/23',
+  //     company_name: 'company2',
+  //     job_title: 'software engineer',
+  //     location: 'remote',
+  //     type_of_app: 'linkedin',
+  //     status: 'Open',
+  //     contact: '',
+  //     notes: '',
+  //     referral: '',
+  //     link: '',
+  //   },
+  //   {
+  //     date: '11/21/23',
+  //     company_name: 'company3',
+  //     job_title: 'software engineer',
+  //     location: 'remote',
+  //     type_of_app: 'linkedin',
+  //     status: 'Interviewed',
+  //     contact: '',
+  //     notes: '',
+  //     referral: '',
+  //     link: '',
+  //   },
+  // ];
+
+  const getAppData = async () => {
+    const allData = await fetch('/api/app');
+    console.log('from back end', allData.json());
+    return allData;
+  };
 
   const makeArray = (data) => {
     return data.map((item, index) => (
@@ -75,7 +81,8 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    updateData(testData);
+    const newData = getAppData();
+    updateData(newData);
   }, []);
 
   // GET request
