@@ -10,13 +10,11 @@ const HomePage = () => {
   const getAppData = async () => {
     const res = await fetch('/api/getApps');
     const result = await res.json();
-    console.log('fetched data', result.length);
-    console.log('update state data', data);
+    console.log(result);
     return result;
   };
 
-  const makeArray = async (data) => {
-    // console.log('this is data', data);
+  const makeArray = (data) => {
     return data.map((item, index) => (
       <DataRow
         key={index}
@@ -37,7 +35,7 @@ const HomePage = () => {
   const filterApps = () => {
     const newStatus = document.querySelector('#status').value;
     updateDropDown(newStatus);
-    const filteredData = testData.filter((app) => {
+    const filteredData = data.filter((app) => {
       return app.status === newStatus;
     });
     // console.log('this should be interviewed data only', filteredData);
@@ -45,20 +43,29 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    const newData = getAppData();
-    updateData(newData);
+    const fetchData = async () => {
+      const newData = await getAppData();
+      updateData(newData);
+    };
+
+    fetchData();
   }, []);
+
+  if (data.length === 0) {
+    return <>Still loading...</>;
+  }
 
   return (
     <div>
       <NavBar />
-      <label for='Status'>Choose a status:</label>
+      <label htmlFor='Status'>Choose a status:</label>
       <select name='status' id='status' onChange={filterApps}>
         <option value='Open'>Open</option>
         <option value='Interviewed'>Interviewed</option>
         <option value='Waiting to Hear Back'>Waiting to Hear Back</option>
         <option value='Rejected'>Rejected</option>
       </select>
+      {makeArray(data)}
     </div>
   );
 };
