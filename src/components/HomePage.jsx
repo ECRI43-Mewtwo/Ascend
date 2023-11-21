@@ -1,13 +1,11 @@
 import React from 'react';
 import NavBar from './NavBar.jsx';
 import { useState, useEffect } from 'react';
+import DataRow from './DataRow.jsx';
 
 const HomePage = () => {
   const [dropdown, updateDropDown] = useState('Open');
-  const [appData, updateAppData] = useState([]);
-  // GET request
-  // cache the GET request
-  // useEffect where the page re-renders with applications
+  const [data, updateData] = useState([]);
 
   const testData = [
     {
@@ -34,7 +32,45 @@ const HomePage = () => {
       referral: '',
       link: '',
     },
+    {
+      date: '11/21/23',
+      company_name: 'company3',
+      job_title: 'software engineer',
+      location: 'remote',
+      type_of_app: 'linkedin',
+      status: 'Interviewed',
+      contact: '',
+      notes: '',
+      referral: '',
+      link: '',
+    },
   ];
+
+  const makeArray = (data) => {
+    return data.map((item, index) => (
+      <DataRow
+        key={index}
+        date={item.date}
+        company_name={item.company_name}
+        job_title={item.job_title}
+        location={item.location}
+        type_of_app={item.type_of_app}
+        status={item.status}
+        contact={item.contact}
+        notes={item.notes}
+        referral={item.referral}
+        link={item.link}
+      />
+    ));
+  };
+
+  useEffect(() => {
+    updateData(testData);
+  }, [data]);
+
+  // GET request
+  // cache the GET request
+  // useEffect where the page re-renders with applications
 
   return (
     <div>
@@ -46,6 +82,7 @@ const HomePage = () => {
         <option value='Waiting to Hear Back'>Waiting to Hear Back</option>
         <option value='Rejected'>Rejected</option>
       </select>
+      {makeArray(data)}
     </div>
   );
 };
