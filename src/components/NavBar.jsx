@@ -28,11 +28,11 @@ function DrawerAppBar(props) {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const gotoApp = () => {
-    navigate('/CreateApp');
-  };
+  // const gotoApp = () => {
+  //   navigate('/AppForm');
+  // };
 
-  const navFunction = [gotoApp()];
+  // const navFunction = [gotoApp()];
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
