@@ -1,6 +1,6 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,13 +17,13 @@ const Login = () => {
     };
 
     const signUpRequest = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(signUpBody),
     };
 
     // const signup = await fetch('/api/signup', signUpRequest);
-    navigate('/homepage');
+    navigate("/homepage");
   };
 
   return (
