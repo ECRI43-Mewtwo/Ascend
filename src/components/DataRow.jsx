@@ -4,7 +4,11 @@ import { useNavigate } from 'react-router-dom';
 const dataRow = (props) => {
   const navigate = useNavigate();
 
-  const routeToUpdateForm = () => navigate('/UpdateForm');
+  const routeToUpdateForm = (e) => {
+    const passedid = e.target.getAttribute('id');
+    console.log(passedid);
+    navigate('/UpdateForm', { state: { passedid } });
+  };
 
   return (
     <div>
@@ -18,7 +22,9 @@ const dataRow = (props) => {
       {props.notes}
       {props.referral}
       {props.link}
-      <button onClick={routeToUpdateForm}>EDIT</button>
+      <button id={props.id} onClick={routeToUpdateForm}>
+        EDIT
+      </button>
     </div>
   );
 };
