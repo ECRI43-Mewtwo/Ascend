@@ -20,19 +20,12 @@ const drawerWidth = 240;
 const navItems = ['Home', 'AppForm', 'Chart', 'Offers', 'Logout'];
 
 function DrawerAppBar(props) {
-  const navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-
-  // const gotoApp = () => {
-  //   navigate('/AppForm');
-  // };
-
-  // const navFunction = [gotoApp()];
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
