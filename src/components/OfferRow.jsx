@@ -4,8 +4,11 @@ import { useNavigate } from "react-router-dom";
 const offerRow = (props) => {
   const navigate = useNavigate();
 
-  const routeToOfferUpdateForm = () => navigate("/UpdateOffers");
-
+  const routeToOfferUpdateForm = (e) => {
+    const passedcompany = e.target.getAttribute("id");
+    console.log(passedcompany);
+    navigate("/UpdateOffers", { state: { passedcompany } });
+  };
   return (
     <div>
       {props.company}
@@ -14,7 +17,9 @@ const offerRow = (props) => {
       {props.equity}
       {props.total_comp}
       {props.start_date}
-      <button onClick={routeToOfferUpdateForm}>EDIT</button>
+      <button id={props.company} onClick={routeToOfferUpdateForm}>
+        EDIT
+      </button>
     </div>
   );
 };
