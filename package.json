@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "start": "node server/server.js",
-    "dev": "concurrently \"nodemon server/server.js\" \"NODE_ENV=development webpack serve --open\"",
+    "dev": "concurrently \"nodemon server/server.js\" \"cross-env NODE_ENV=development webpack serve --open\"",
     "test": "jest --verbose"
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.6",
     "bcrypt": "^5.1.1",
     "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "html-webpack-plugin": "^5.5.3",
