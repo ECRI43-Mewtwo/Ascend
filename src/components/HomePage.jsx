@@ -87,7 +87,13 @@ const HomePage = () => {
   // }
 
   return (
-    <div>
+    <div style={{
+      backgroundImage: "url(https://www.wallpaperup.com/uploads/wallpapers/2015/04/02/653105/09d95a6f0e5f6e6a79bcbc58aa1222ad-700.jpg)",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      width: "100%",
+      height: "100vh", // Set the height to 100vh (viewport height)
+    }}>
       <NavBar />
       <label htmlFor='Status'>Choose a status:</label>
       <select name='status' id='status' onChange={filterApps}>
