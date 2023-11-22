@@ -15,6 +15,7 @@ const Offers = () => {
   const makeOfferArray = (data) => {
     return data.map((item, index) => (
       <OfferRow
+        id={item.id}
         key={index}
         company={item.company}
         salary={item.salary}
