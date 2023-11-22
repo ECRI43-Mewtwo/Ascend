@@ -23,7 +23,7 @@ const Login = () => {
     };
 
     // const signup = await fetch('/api/signup', signUpRequest);
-    navigate('/homepage');
+    navigate('/Home');
   };
 
   return (

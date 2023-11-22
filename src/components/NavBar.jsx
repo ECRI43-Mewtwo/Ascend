@@ -14,17 +14,25 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { useNavigate, Link } from 'react-router-dom';
 
 const drawerWidth = 240;
-const navItems = ['App Form', 'Chart', 'Offer', 'Logout'];
+const navItems = ['Home', 'AppForm', 'Chart', 'Offer', 'Logout'];
 
 function DrawerAppBar(props) {
+  const navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+
+  const gotoApp = () => {
+    navigate('/CreateApp');
+  };
+
+  const navFunction = [gotoApp()];
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -71,7 +79,7 @@ function DrawerAppBar(props) {
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
               <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+                <Link to={`/${item}`}>{item}</Link>
               </Button>
             ))}
           </Box>
