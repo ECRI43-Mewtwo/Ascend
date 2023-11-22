@@ -20,6 +20,7 @@ const HomePage = () => {
   const makeArray = (data) => {
     return data.map((item, index) => (
       <DataRow
+        id={item.id}
         key={index}
         date={item.date}
         company={item.company}

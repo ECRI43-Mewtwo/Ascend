@@ -1,6 +1,6 @@
-import React from "react";
-import NavBar from "./NavBar.jsx";
-import { useLocation } from "react-router-dom";
+import React from 'react';
+import NavBar from './NavBar.jsx';
+import { useLocation } from 'react-router-dom';
 
 const UpdateOffers = () => {
   const { state } = useLocation();
@@ -12,7 +12,6 @@ const UpdateOffers = () => {
     const salary = e.target.offersalary.value;
     const bonus = e.target.offerbonus.value;
     const equity = e.target.offerequity.value;
-    const totalComp = e.target.offertotalcomp.value;
     const startDate = e.target.offerstartdate.value;
 
     console.log(startDate);
@@ -20,13 +19,13 @@ const UpdateOffers = () => {
     console.log(e.target);
 
     async function putOffer() {
-      const body = { company, salary, bonus, equity, totalComp, startDate };
+      const body = { company, salary, bonus, equity, startDate };
       const reqBody = {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       };
-      await fetch("/api/updateOffer", reqBody);
+      await fetch('/api/updateOffer', reqBody);
     }
     putOffer();
   };
@@ -52,9 +51,6 @@ const UpdateOffers = () => {
         <br></br>
         <label htmlFor='offerequity'>Equity</label>
         <input type='number' name='offerequity' id='offerequity' />
-        <br></br>
-        <label htmlFor='offertotalcomp'>Total Comp</label>
-        <input type='number' name='offertotalcomp' id='offertotalcomp' />
         <br></br>
         <label htmlFor='offerstartdate'>Start Date</label>
         <input type='date' name='offerstartdate' id='offerstartdate' />
