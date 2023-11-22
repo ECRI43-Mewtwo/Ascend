@@ -13,7 +13,7 @@ const Login = () => {
     e.preventDefault();
     const username = e.target.username.value;
     const password = e.target.password.value;
-    console.log(username, password);
+    // console.log(username, password);
 
     const signUpBody = {
       username,
@@ -26,7 +26,7 @@ const Login = () => {
       body: JSON.stringify(signUpBody),
     };
 
-    const signup = await fetch('/api/signup', signUpRequest);
+    const signin = await fetch('/api/signup', signUpRequest);
     navigate('/Home');
   };
 
