@@ -4,6 +4,7 @@ const appController = {};
 
 //creates new application entry
 appController.createApp = async (req, res, next) => {
+  console.log(req.body);
   const {
     date,
     company,

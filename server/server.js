@@ -28,17 +28,17 @@ app.get('/api/getApps', appController.getApps, (req, res) => {
 // api/getOffers
 app.get('/api/getOffers', offerController.getOffers, (req, res) => {
   return res.status(200).json(res.locals.offers);
-})
+});
 
 // api/updateOffer
-app.put('/api/updateOffer', offerController.updateOffers, (req,res) => {
+app.put('/api/updateOffer', offerController.updateOffers, (req, res) => {
   return res.status(200).json('Successful update to offer db');
-})
+});
 
 // api/signup
 app.post('/api/signup', authController.signup, (req, res) => {
   return res.status(200).json('Successful addition to user db');
-})
+});
 
 //global error handler
 app.use((err, req, res, next) => {
