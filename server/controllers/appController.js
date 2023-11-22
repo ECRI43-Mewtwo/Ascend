@@ -1,4 +1,4 @@
-const db = require('../models/models');
+const db = require("../models/models");
 
 const appController = {};
 
@@ -32,7 +32,7 @@ appController.createApp = async (req, res, next) => {
     starred,
   ];
   const addAppQuery =
-    'INSERT INTO app_table (date, company, title, location, app_type, status, contact, notes, referral, link, starred) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11);';
+    "INSERT INTO app_table (date, company, title, location, app_type, status, contact, notes, referral, link, starred) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11);";
   try {
     db.query(addAppQuery, addAppArr).then(() => {
       return next();
@@ -73,12 +73,12 @@ appController.updateApp = async (req, res, next) => {
     id,
   ];
   const updateAppQuery =
-    'UPDATE app_table SET date=$1, company=$2, title=$3, location=$4, app_type=$5, status=$6, contact=$7, notes=$8, referral=$9, link=$10, starred=$11 WHERE id=$12;';
+    "UPDATE app_table SET date=$1, company=$2, title=$3, location=$4, app_type=$5, status=$6, contact=$7, notes=$8, referral=$9, link=$10, starred=$11 WHERE id=$12;";
   try {
     db.query(updateAppQuery, updateAppArr).then(() => {
-      if (status === 'offered') {
+      if (status === "offered") {
         let start_date = new Date();
-        start_date.toISOString().split('T')[0];
+        start_date.toISOString().split("T")[0];
         const createOfferArr = [company, start_date];
         const addOfferQuery = `INSERT INTO offer_table (company, salary, bonus, equity, total_comp, start_date) VALUES ($1, 0, 0, 0, 0, $2)`;
         db.query(addOfferQuery, createOfferArr).then(() => {
@@ -97,7 +97,7 @@ appController.getApps = async (req, res, next) => {
   const getAppQuery = `SELECT * FROM app_table EXCEPT SELECT * FROM "app_table" WHERE STATUS IN ('offered');`;
   try {
     db.query(getAppQuery).then((data) => {
-      console.log('DATA----', data.rows);
+      console.log("DATA----", data.rows);
       res.locals.apps = data.rows;
       return next();
     });
