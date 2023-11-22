@@ -35,7 +35,9 @@ const dataRow = (props) => {
       <li>{props.notes}</li>
       <li>{props.referral}</li>
       <li>{props.link}</li>
-      <button onClick={routeToUpdateForm}>EDIT</button>
+      <button id={props.id} onClick={routeToUpdateForm}>
+        EDIT
+      </button>
     </ul>
   );
 };
