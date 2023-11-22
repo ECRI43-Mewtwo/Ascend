@@ -30,10 +30,10 @@ const router = createBrowserRouter([
     path: '/AppForm',
     element: <CreateApp />,
   },
-  // {
-  //   path: '/UpdateForm',
-  //   element: <UpdateForm />,
-  // },
+  {
+    path: '/UpdateForm',
+    element: <UpdateForm />,
+  },
   // {
   //   path: '/UpdateOffers',
   //   element: <UpdateOffers />,

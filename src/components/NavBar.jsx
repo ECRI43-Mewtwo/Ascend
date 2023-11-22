@@ -17,7 +17,7 @@ import Button from '@mui/material/Button';
 import { useNavigate, Link } from 'react-router-dom';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'AppForm', 'Chart', 'Offer', 'Logout'];
+const navItems = ['Home', 'AppForm', 'Chart', 'Offers', 'Logout'];
 
 function DrawerAppBar(props) {
   const navigate = useNavigate();
