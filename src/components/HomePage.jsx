@@ -4,14 +4,17 @@ import { useState, useEffect } from 'react';
 import DataRow from './DataRow.jsx';
 
 const HomePage = () => {
-  const [dropdown, updateDropDown] = useState('');
-  const [data, updateData] = useState([]);
+  const [dropDown, updateDropDown] = useState('');
+  const [appData, updateAppData] = useState([]);
+  const [copyData, updateCopyData] = useState([]);
 
   const getAppData = async () => {
     const res = await fetch('/api/getApps');
     const result = await res.json();
-    console.log(result);
-    return result;
+    // console.log(result);
+    updateAppData(result);
+    updateCopyData(result);
+    // return result;
   };
 
   const makeArray = (data) => {
@@ -34,38 +37,68 @@ const HomePage = () => {
 
   const filterApps = () => {
     const newStatus = document.querySelector('#status').value;
+    // console.log('this is the value of dropdown', newStatus);
     updateDropDown(newStatus);
-    const filteredData = data.filter((app) => {
-      return app.status === newStatus;
-    });
-    // console.log('this should be interviewed data only', filteredData);
-    updateData(filteredData);
+    if (newStatus === 'open') {
+      const copyArr = [...appData];
+      const filteredData = copyArr.filter((app) => {
+        return app.status === newStatus;
+      });
+      updateCopyData(filteredData);
+    }
+    if (newStatus === 'interviewed') {
+      const copyArr = [...appData];
+      const filteredData = copyArr.filter((app) => {
+        return app.status === newStatus;
+      });
+      updateCopyData(filteredData);
+    }
+    if (newStatus === 'waiting to hear back') {
+      const copyArr = [...appData];
+      const filteredData = copyArr.filter((app) => {
+        return app.status === newStatus;
+      });
+      updateCopyData(filteredData);
+    }
+    if (newStatus === 'rejected') {
+      const copyArr = [...appData];
+      const filteredData = copyArr.filter((app) => {
+        return app.status === newStatus;
+      });
+      updateCopyData(filteredData);
+    }
+    if (newStatus === 'all') {
+      const copyArr = [...appData];
+      updateCopyData(copyArr);
+    }
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const newData = await getAppData();
-      updateData(newData);
-    };
+    // const fetchData = async () => {
+    //   const newData = await getAppData();
+    // };
 
-    fetchData();
+    // fetchData();
+    getAppData();
   }, []);
 
-  if (data.length === 0) {
-    return <>Still loading...</>;
-  }
+  // if (data.length === 0) {
+  //   return <>No data...</>;
+  // }
 
   return (
     <div>
       <NavBar />
       <label htmlFor='Status'>Choose a status:</label>
       <select name='status' id='status' onChange={filterApps}>
-        <option value='Open'>Open</option>
-        <option value='Interviewed'>Interviewed</option>
-        <option value='Waiting to Hear Back'>Waiting to Hear Back</option>
-        <option value='Rejected'>Rejected</option>
+        <option value='all'>All Applications</option>
+        <option value='open'>Open</option>
+        <option value='interviewed'>Interviewed</option>
+        <option value='waiting to hear back'>Waiting to Hear Back</option>
+        <option value='rejected'>Rejected</option>
       </select>
-      {makeArray(data)}
+      {makeArray(copyData)}
+      {/* {DataRow} */}
     </div>
   );
 };
